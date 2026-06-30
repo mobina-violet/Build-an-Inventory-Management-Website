@@ -1,4 +1,4 @@
-import { UserButton } from "@hexclave/next"
+import UserButtonWrapper from "./Userbuttonwrapper"
 import { BarChart3, Package, Plus, Settings } from "lucide-react";
 import Link from "next/link";
 
@@ -37,8 +37,7 @@ export default function Sidebar({
                 isActive
                   ? "bg-purple-100 text-gray-800"
                   : "hover:bg-gray-800 text-gray-300"
-              }`}
-            >
+              }`}>
               <IconComponent className="w-5 h-5" />
               <span className="text-sm">{item.name}</span>
             </Link>
@@ -48,7 +47,7 @@ export default function Sidebar({
 
       <div className="absolute bottom-0 left-0 right-0 p-6 borter-t border-gray-700">
         <div className="flex items-center justify-between">
-          <UserButton showUserInfo />
+          <UserButtonWrapper />
         </div>
       </div>
     </div>

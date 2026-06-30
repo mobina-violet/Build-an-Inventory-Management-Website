@@ -41,3 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 /app/generated/prisma
+Add-Content ".gitignore" "`nAGENTS.md`nCLAUDE.md`n.mcp.json"

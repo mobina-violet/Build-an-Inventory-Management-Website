@@ -115,8 +115,7 @@ export default async function InventoryPage({
                         action={async (formData: FormData) => {
                           "use server";
                           await deleteProduct(formData);
-                        }}
-                      >
+                        }}>
                         <input type="hidden" name="id" value={product.id} />
                         <button className="text-red-600 hover:text-red-900">
                           Delete

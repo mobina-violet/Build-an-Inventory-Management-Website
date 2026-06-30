@@ -1,15 +1,14 @@
-import ProductsChart from "../components/Products-chart";
 import Sidebar from "../components/Sidebar";
 import { getCurrentUser } from "../lib/auth";
 import { prisma } from "../lib/prisma";
 import { TrendingUp } from "lucide-react";
-
+import ProductsChart from "../components/ProductsChartWrapper";
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  console.log("👤 USER ID:", user.id)
+  //console.log("👤 USER ID:", user.id)
   const userId = user.id;
 
-  const [totalProducts, lowStock, allProducts] = await Promise.all([
+  const [totalProducts, lowStock, allProducts, recent] = await Promise.all([
     prisma.product.count({ where: { userId } }),
     prisma.product.count({
       where: {
@@ -21,8 +20,12 @@ export default async function DashboardPage() {
       where: { userId },
       select: { price: true, quantity: true, createdAt: true },
     }),
+    prisma.product.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+    }),
   ]);
-
   const totalValue = allProducts.reduce(
     (sum, product) => sum + Number(product.price) * Number(product.quantity),
     0,
@@ -68,13 +71,7 @@ export default async function DashboardPage() {
     });
   }
 
-  const recent = await prisma.product.findMany({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-    take: 5,
-  });
-
-  console.log(totalValue);
+  //console.log(totalValue);
 
   return (
     <div className="min-h-screen bg-gray-50">
