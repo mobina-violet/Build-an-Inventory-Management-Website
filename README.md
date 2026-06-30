@@ -7,7 +7,7 @@ A full-stack inventory management web app built with Next.js, Prisma, Neon, and 
 ## Preview
 
 <!-- Add a screenshot of your project here -->
-![App Screenshot](./public/preview.png)
+![Settings Preview](public/preview.png)
 
 ---
 
